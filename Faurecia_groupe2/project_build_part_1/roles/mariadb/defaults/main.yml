@@ -1,0 +1,4 @@
+---
+
+mariadb_socket: '/var/lib/mysql/mysql.sock'
+mariadb_root_password: ''

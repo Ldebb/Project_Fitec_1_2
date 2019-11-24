@@ -1,0 +1,73 @@
+---
+- name: Configure "mariadb"
+  template:
+    src: my.cnf.j2
+    dest: /etc/mysql/my.cnf
+    owner: root
+    group: root
+    mode: '0644'
+  #notify:
+  #  - restart mariadb
+
+- name: Install dependencies 1/2
+  apt:
+    name: 
+      - python-pip
+      - python-pymysql 
+      - python-setuptools
+
+- name: Install dependencies 2/2
+  pip:
+    name: PyMySQL
+
+- name: create export "DATA" folders
+  file:
+    path: "{{ item }}"
+    mode: '0755'
+    state: directory
+  loop:
+    - /export/DATA
+
+#- name: Delete mysql files
+#  shell:
+#    cmd: rm -rf /var/lib/mysql/*
+
+#- name: Check if a custom root password is specified
+#  debug:
+#    msg: >
+#      Warning!! the MariaDB root password was left empty. Please set a custom
+#      password with role variable mariadb_root_password to secure your database
+#      server!
+#  when: mariadb_root_password | length == 0
+#
+#- name: Set MariaDB root password for the first time (root@localhost)
+#  mysql_user:
+#    name: root
+#    password: "{{ mariadb_root_password }}"
+#    host: localhost
+#    login_unix_socket: "{{ mariadb_socket }}"
+#    state: present
+#
+#- name: Set MariaDB root password for 127.0.0.1, ::1
+#  mysql_user:
+#    name: root
+#    password: "{{ mariadb_root_password }}"
+#    host: "{{ item }}"
+#    login_user: root
+#    login_unix_socket: "{{ mariadb_socket }}"
+#    state: present
+#  with_items:
+#    - ::1
+#    - 127.0.0.1
+#
+#- name: Create "wordpress" DB
+#  mysql_db:
+#    name: wordpress
+#    state: present
+#
+#- name: Create database user with name 'wordpress' and password 'test123' with all database privileges
+#  mysql_user:
+#    name: wordpress
+#    password: test123
+#    priv: '*.*:ALL'
+#    state: present

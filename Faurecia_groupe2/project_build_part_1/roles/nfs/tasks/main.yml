@@ -1,0 +1,7 @@
+---
+
+- name: installation of nfs
+  import_tasks: install.yml
+
+- name: configure nfs
+  import_tasks: configure.yml

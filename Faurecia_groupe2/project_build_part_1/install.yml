@@ -1,0 +1,36 @@
+---
+- name: "[HAPROXY, DNSmasq] - role to install haproxy and dnsmasq"
+  hosts: s0.infra  
+  become: yes    
+  roles:
+    - dnsmasq
+    - haproxy
+  tags:
+    - dnsmasq
+    - haproxy
+
+- name: "[MariaDB] - role to install mariadb"
+  hosts: s3.infra
+  become: yes    
+  roles:
+    - mariadb
+  tags:
+    - mariadb
+
+- name: "[Wordpress] - role to install Wordpress"
+  hosts: 
+    - s1.infra
+    - s2.infra  
+  become: yes    
+  roles:
+    - wordpress
+  tags:
+    - wordpress
+
+- name: "[NFS server] - role to install NFS server"
+  hosts: s4.infra
+  become: yes    
+  roles:
+    - nfs
+  tags:
+    - nfs

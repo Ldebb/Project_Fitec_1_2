@@ -1,0 +1,10 @@
+# roles/wordpress/tasks/main.yml
+---
+
+- name: Install Wordpress
+  include_tasks: install.yml
+  tags: wordpress
+
+- name: Configure wordpress
+  include_tasks: config.yml
+  tags: wordpress

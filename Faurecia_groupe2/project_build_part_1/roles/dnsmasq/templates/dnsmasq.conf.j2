@@ -1,0 +1,27 @@
+domain-needed
+bogus-priv
+
+interface=eth1
+local=/infra/
+domain=infra
+
+expand-hosts
+server=1.1.1.1
+no-resolv
+log-facility=/var/log/dnsmasq.log
+
+# Plage DHCP
+dhcp-range=infra,192.168.0.28, 192.168.0.100, 255.255.255.0, 24h
+
+#listen-address=127.0.0.1 
+#listen-address=192.168.50.1
+#listen-address=192.168.50.500
+
+bind-interfaces
+ 
+dhcp-host=00:BB:FF:FF:00:99,s1.infra,192.168.0.28
+dhcp-host=00:99:EE:FF:00:99,s2.infra,192.168.0.29
+dhcp-host=00:AA:EF:FF:00:99,s3.infra,192.168.0.34
+dhcp-host=77:66:22:22:33:DD,s4.infra,192.168.0.36
+
+dhcp-ignore=tag:!known

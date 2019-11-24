@@ -1,0 +1,25 @@
+global
+ daemon
+ maxconn 256
+
+defaults
+ mode http
+ timeout connect 5000ms
+ timeout client 50000ms
+ timeout server 50000ms
+
+listen stats
+ bind *:9999
+ stats enable
+ stats hide-version
+ stats uri /stats
+ stats auth admin:admin@123
+
+frontend proxy
+ bind *:80
+ default_backend backendnodes
+
+backend backendnodes
+ balance roundrobin
+ server node1 S1.infra check
+ server node2 S2.infra check

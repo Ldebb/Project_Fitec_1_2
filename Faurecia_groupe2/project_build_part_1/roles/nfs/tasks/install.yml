@@ -1,0 +1,11 @@
+---
+
+- name: Update repositories cache and install "nfs server / client" packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+     - nfs-common
+     - nfs-kernel-server
+
