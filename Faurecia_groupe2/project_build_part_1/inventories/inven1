@@ -1,0 +1,12 @@
+s0.infra ansible_user=root
+s1.infra ansible_user=root
+s2.infra ansible_user=root
+s3.infra ansible_user=root
+s4.infra ansible_user=root
+
+# DHCP config
+[dhcp]
+s1.infra
+s2.infra
+s3.infra
+s4.infra
