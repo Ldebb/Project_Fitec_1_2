@@ -8,6 +8,13 @@ s4.infra ansible_user=root
 [infra]
 s0.infra
 
+# DHCP config
+[dhcp]
+s1.infra
+s2.infra
+s3.infra
+s4.infra
+
 # Apache + PHP 7 + Wordpress
 [web]
 s1.infra
